@@ -969,7 +969,7 @@
         </header>
 
        <section class="blog-posts">
-  <h2 class="h2 article-title">Latest Blog Posts</h2>
+ 
   <ul class="blog-posts-list">
     <?php
       include 'admin/config.php';
