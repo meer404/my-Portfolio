@@ -785,168 +785,43 @@
           </div>
 
           <ul class="project-list">
+            <?php
+              include 'admin/config.php';
+              $result = $conn->query("SELECT * FROM portfolio ORDER BY created_at DESC");
+              while($row = $result->fetch_assoc()):
+            ?>
 
-            <li class="project-item  active" data-filter-item data-category="web development" >
-              <a href="https://lvinpress.com/" target="_blank">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/lvin-project2.jpg" alt="Lvin Press" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">Lvin Press</h3>
-
-                <p class="project-category">Web development & Web design</p>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="web development">
-              <a href="#">
+            <li class="project-item  active" data-filter-item data-category="<?= htmlspecialchars($row['category']) ?>" >
+              <a href="<?= htmlspecialchars($row['link']) ?>" target="_blank">
 
                 <figure class="project-img">
                   <div class="project-item-icon-box">
                     <ion-icon name="eye-outline"></ion-icon>
                   </div>
 
-                  <img src="./assets/images/qr-code-project.jpg" alt="qrcode" loading="lazy">
+                   <?php
+    // Correct paths based on your server structure
+                          $imageWebPath = 'admin/uploads/' . htmlspecialchars($row['image']);
+                          $imageServerPath = __DIR__ . '/admin/uploads/' . $row['image'];
+                          
+                          if (!empty($row['image']) && file_exists($imageServerPath)):
+                    ?>
+                  <img src="<?= $imageWebPath ?>" alt="Blog image" loading="lazy">
+      <?php else: ?>
+        <img src="assets/images/default-blog.png" alt="No image available" loading="lazy">
+      <?php endif; ?>
                 </figure>
 
-                <h3 class="project-title">QR Code Generator</h3>
+                <h3 class="project-title"><?= htmlspecialchars($row['title']) ?></h3>
 
-                <p class="project-category">Web development & Web design</p>
+                <p class="project-category"><?= htmlspecialchars($row['category']) ?></p>
 
               </a>
             </li>
 
-            <li class="project-item  active" data-filter-item data-category="web design">
-              <a href="#">
+           
 
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/project-3.jpg" alt="fundo" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">Fundo</h3>
-
-                <p class="project-category">Web design</p>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="applications">
-              <a href="#">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/project-4.png" alt="brawlhalla" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">Brawlhalla</h3>
-
-                <p class="project-category">Applications</p>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="web design">
-              <a href="#">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/project-5.png" alt="dsm." loading="lazy">
-                </figure>
-
-                <h3 class="project-title">DSM.</h3>
-
-                <p class="project-category">Web design</p>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="web design">
-              <a href="#">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/project-6.png" alt="metaspark" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">MetaSpark</h3>
-
-                <p class="project-category">Web design</p>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="web development">
-              <a href="#">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/project-7.png" alt="summary" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">Summary</h3>
-
-                <p class="project-category">Web development</p>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="applications">
-              <a href="#">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/project-8.jpg" alt="task manager" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">Task Manager</h3>
-
-                <p class="project-category">Applications</p>
-
-              </a>
-            </li>
-
-            <li class="project-item  active" data-filter-item data-category="web development">
-              <a href="#">
-
-                <figure class="project-img">
-                  <div class="project-item-icon-box">
-                    <ion-icon name="eye-outline"></ion-icon>
-                  </div>
-
-                  <img src="./assets/images/project-9.png" alt="arrival" loading="lazy">
-                </figure>
-
-                <h3 class="project-title">Arrival</h3>
-
-                <p class="project-category">Web development</p>
-
-              </a>
-            </li>
+            <?php endwhile; ?>
 
           </ul>
 
